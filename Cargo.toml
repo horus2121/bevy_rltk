@@ -6,7 +6,10 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bevy = { version = '0.8.1', features = ['dynamic'] }
+bevy = { version = "0.10.0", features = ["dynamic_linking"] }
+rltk = { version = "0.8.7" }
+specs = "0.18.0"
+specs-derive = "0.4.1" 
 
 [profile.dev.package."*"]
 opt-level = 3
