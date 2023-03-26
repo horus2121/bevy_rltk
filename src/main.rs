@@ -1,3 +1,4 @@
+#![allow(unused)]
 use rltk::{Rltk, GameState, RGB};
 use specs::prelude::*;
 use std::cmp::{max, min};

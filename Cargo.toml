@@ -1,13 +1,13 @@
 [package]
-name = "bevy_demo"
+name = "bevy_rltk"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bevy = { version = "0.10.0", features = ["dynamic_linking"] }
-rltk = { version = "0.8.7" }
+bevy = { version = "0.10.0" }
+rltk = { git = "https://github.com/amethyst/bracket-lib.git" }
 specs = "0.18.0"
 specs-derive = "0.4.1" 
 
