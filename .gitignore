@@ -1,2 +1,5 @@
 /target
 /wasm
+/.vscode
+/Makefile.toml
+/rustfmt.toml
