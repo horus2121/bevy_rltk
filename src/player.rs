@@ -1,5 +1,6 @@
 use super::{
-    xy_idx, Player, Position, State, TileType,
+    Map, Player, Position, State, TileType,
+    Viewshed,
 };
 use rltk::{Rltk, VirtualKeyCode};
 use specs::prelude::*;
@@ -14,22 +15,31 @@ pub fn try_move_player(
         ecs.write_storage::<Position>();
     let mut players =
         ecs.write_storage::<Player>();
-    let map = ecs.fetch::<Vec<TileType>>();
+    let mut viewsheds =
+        ecs.write_storage::<Viewshed>();
+    let map = ecs.fetch::<Map>();
 
-    for (_player, pos) in
-        (&mut players, &mut positions).join()
+    for (_player, pos, viewshed) in (
+        &mut players,
+        &mut positions,
+        &mut viewsheds,
+    )
+        .join()
     {
-        let destination_idx = xy_idx(
+        let destination_idx = map.xy_idx(
             pos.x + delta_x,
             pos.y + delta_y,
         );
 
-        if map[destination_idx] != TileType::Wall
+        if map.tiles[destination_idx]
+            != TileType::Wall
         {
             pos.x =
                 min(79, max(0, pos.x + delta_x));
             pos.y =
                 min(49, max(0, pos.y + delta_y));
+
+            viewshed.dirty = true;
         }
     }
 }
